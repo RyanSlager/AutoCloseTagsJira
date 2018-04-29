@@ -1,0 +1,13 @@
+{
+  "manifest_version":2,
+  "name": "AutoClose style tags: Jira",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://products.sircon.com/*"
+      ],
+      "js": ["jquery-3.3.1.min.js", "jquery.caret.js", "content.js"]
+    }
+  ]
+}
