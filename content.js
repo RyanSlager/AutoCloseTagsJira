@@ -1,23 +1,38 @@
 $(document).ready(function(){
 
-  $("#comment").on("keyup change", function(){
-    var comment = $("#comment");
+  $(window).keypress(function(e) {
+    var tags = ['{code:sql}', '{code:xml}', '{code:java}', '{code}'];
+    if(e.which == 112) {
+      closeTag(tags);
+    }
+  });
 
-    if(comment.val().length >=10 && comment.val().lastIndexOf('{code:sql}') == (comment.val().length - 10)){
-      comment.val(comment.val() + "\n\n{code}");
-      comment.caretTo(comment.val().length - 7);
-    }
-    else if(comment.val().length >=10 && comment.val().lastIndexOf('{code:xml}') == (comment.val().length - 10)){
-      comment.val(comment.val() + "\n\n{code}");
-      comment.caretTo(comment.val().length - 7);
-    }
-    else if(comment.val().length >=11 && comment.val().lastIndexOf('{code:java}') == (comment.val().length - 11)){
-      comment.val(comment.val() + "\n\n{code}");
-      comment.caretTo(comment.val().length - 7);
-    }
-    //else if(comment.val().length >=11 && comment.val().lastIndexOf('{code}') == (comment.val().length - 6)){
-      //comment.val(comment.val() + "\n\n{code}");
-      //comment.caretTo(comment.val().length - 7);
-    //}
+  $("#comment").on("keyup change", function(){
+
+    var tags = ['{code:sql}', '{code:xml}', '{code:java}', '{code}'];
+    var textArea = $("#comment");
+    closeTag(tags, textArea);
   });
 });
+
+function closeTag(tagNames, textArea){
+  var doubleCode;
+  //var codeCount = occurrences(textArea.val(), '{code}');
+  //console.log(codeCount);
+  for (var i = 0; i < tagNames.length; i++){
+    var item = tagNames[i];
+    if(item != '{code}' && textArea.val().length >= item.length && textArea.val().lastIndexOf(item) == (textArea.val().length - item.length)){
+      textArea.val(textArea.val() + "\n\n{code}");
+      textArea.caretTo(textArea.val().length - 7);
+      //break;
+      //return doubleCode = false;
+    }
+    //TODO:Figure out how this should work for {code}
+    // else if(item == '{code}' && textArea.val().length >= item.length && textArea.val().lastIndexOf(item) == (textArea.val().length - item.length) && codeCount % 2 != 0){
+    //   textArea.val(textArea.val() + "\n\n{code}");
+    //   textArea.caretTo(textArea.val().length - 7);
+    //   break;
+      //return doubleCode = true;
+    }
+  }
+}

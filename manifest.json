@@ -7,7 +7,7 @@
       "matches": [
         "https://products.sircon.com/*"
       ],
-      "js": ["jquery-3.3.1.min.js", "jquery.caret.js", "content.js"]
+      "js": ["jquery-3.3.1.min.js", "jquery.caret.js", "occurrences.js", "content.js"]
     }
   ]
 }
