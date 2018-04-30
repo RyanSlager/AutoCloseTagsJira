@@ -35,4 +35,3 @@ function closeTag(tagNames, textArea){
       //return doubleCode = true;
     }
   }
-}
